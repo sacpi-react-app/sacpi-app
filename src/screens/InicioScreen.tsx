@@ -12,6 +12,16 @@ import { onSignOut } from '../navigation/auth';
 import { ScrollView } from 'react-native-gesture-handler';
 
 export default class InicioScreen extends Component<{}>  {
+    // static navigationOptions = {
+    //     title: 'Inicio',
+    //     headerStyle: {
+    //         backgroundColor: '#f4511e',
+    //       },
+    //       headerTintColor: '#fff',
+    //       headerTitleStyle: {
+    //         fontWeight: 'bold',
+    //       }
+    //   };
     render() {
         return (
             <View style={{ flex: 1 }}>

@@ -1,27 +1,132 @@
 import React from 'react';
 import { Text, Platform, StatusBar } from 'react-native';
-import { createBottomTabNavigator, createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator, createMaterialTopTabNavigator, createStackNavigator } from 'react-navigation';
 
 import SplashScreen from '../screens/SplashScreen';
 import LoginScreen from '../screens/LoginScreen';
 import Icon from '../components/Icon';
+
+
 import ParteDiarioScreen from '../screens/ParteDiarioScreen';
+import ParteDiarioAddScreen from '../screens/ParteDiarioAddScreen'
+import ParteDiarioEditScreen from '../screens/ParteDiarioEditScreen'
+import ParteDiarioDetailsScreen from '../screens/ParteDiarioDetailsScreen'
+
 import AsignacionScreen from '../screens/AsignacionScreen';
 import MenuScreen from '../screens/MenuScreen';
 import NotificacionScreen from '../screens/NotificacionScreen';
 import InicioScreen from '../screens/InicioScreen';
 
 const headerStyle = {
-  marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+  backgroundColor: '#633689'
 };
 
-const TabNav = createBottomTabNavigator(
+const InicioStack = createStackNavigator({
+  Dashboard: {
+    screen: InicioScreen,
+    navigationOptions: {
+      title: 'Dashboard',
+      headerStyle: headerStyle,
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      }
+    }
+  },
+});
+const ParteDiarioStack = createStackNavigator({
+  List: {
+    screen: ParteDiarioScreen,
+    navigationOptions: {
+      title: 'Parte Diario',
+      headerStyle: headerStyle,
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      }
+    }
+  },
+  Create: {
+    screen: ParteDiarioAddScreen,
+    navigationOptions: {
+      title: 'Nuevo Parte Diario',
+      headerStyle: headerStyle,
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      }
+    }
+  },
+  Edit: {
+    screen: ParteDiarioEditScreen,
+    navigationOptions: {
+      title: 'Modificar Parte Diario',
+      headerStyle: headerStyle,
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      }
+    }
+  },
+  Detail: {
+    screen: ParteDiarioDetailsScreen,
+    navigationOptions: {
+      title: 'Detalle Parte Diario',
+      headerStyle: headerStyle,
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      }
+    }
+  },
+});
+const AsignacionStack = createStackNavigator({
+  List: {
+    screen: AsignacionScreen,
+    navigationOptions: {
+      title: 'Asignaciones Maquinaria',
+      headerStyle: headerStyle,
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      }
+    }
+  },
+});
+const NotificacionStack = createStackNavigator({
+  Inicio: {
+    screen: NotificacionScreen,
+    navigationOptions: {
+      title: 'Notificaciones',
+      headerStyle: headerStyle,
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      }
+    }
+  },
+});
+const MenuStack = createStackNavigator({
+  Menu: {
+    screen: MenuScreen,
+    navigationOptions: {
+      title: 'Menu',
+      headerStyle: headerStyle,
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      }
+    }
+  },
+});
+
+const TabNav = createMaterialTopTabNavigator(
   {
     Inicio: {
-      screen: InicioScreen,
+      screen: InicioStack,
       navigationOptions: {
         tabBarLabel: ({ tintColor }) => (
-          <Text style={{ fontSize: 10, color: tintColor, alignItems: 'center', justifyContent: 'center' }}>
+          <Text style={{ fontSize: 10, color: tintColor }}>
             Inicio
           </Text>
         ),
@@ -29,10 +134,10 @@ const TabNav = createBottomTabNavigator(
       }
     },
     ParteDiario: {
-      screen: ParteDiarioScreen,
+      screen: ParteDiarioStack,
       navigationOptions: {
         tabBarLabel: ({ tintColor }) => (
-          <Text style={{ fontSize: 10, color: tintColor, alignItems: 'center', justifyContent: 'center' }}>
+          <Text style={{ fontSize: 10, color: tintColor }}>
             Parte Diario
           </Text>
         ),
@@ -40,10 +145,10 @@ const TabNav = createBottomTabNavigator(
       }
     },
     Asignacion: {
-      screen: AsignacionScreen,
+      screen: AsignacionStack,
       navigationOptions: {
         tabBarLabel: ({ tintColor }) => (
-          <Text style={{ fontSize: 10, color: tintColor, alignItems: 'center', justifyContent: 'center' }}>
+          <Text style={{ fontSize: 10, color: tintColor }}>
             Asignaciones
           </Text>
         ),
@@ -51,10 +156,10 @@ const TabNav = createBottomTabNavigator(
       }
     },
     Notificacion: {
-      screen: NotificacionScreen,
+      screen: NotificacionStack,
       navigationOptions: {
         tabBarLabel: ({ tintColor }) => (
-          <Text style={{ fontSize: 10, color: tintColor, alignItems: 'center', justifyContent: 'center' }}>
+          <Text style={{ fontSize: 10, color: tintColor }}>
             Notificationes
           </Text>
         ),
@@ -62,10 +167,10 @@ const TabNav = createBottomTabNavigator(
       }
     },
     Menu: {
-      screen: MenuScreen,
+      screen: MenuStack,
       navigationOptions: {
         tabBarLabel: ({ tintColor }) => (
-          <Text style={{ fontSize: 10, color: tintColor, alignItems: 'center', justifyContent: 'center' }}>
+          <Text style={{ fontSize: 10, color: tintColor }}>
             Menu
           </Text>
         ),
@@ -74,12 +179,25 @@ const TabNav = createBottomTabNavigator(
     },
   },
   {
+    tabBarPosition: 'bottom',
+    swipeEnabled: true,
+    animationEnabled: true,
     tabBarOptions: {
+      activeTintColor: '#FFFFFF',
+      //pressColor: '#004D40',
+      inactiveTintColor: '#F8F8F8',
+      showIcon: true,
+      showLabel: true,
       style: {
-        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+        backgroundColor: '#633689',
       },
-      activeTintColor: 'orange',
-      inactiveTintColor: 'gray'
+      labelStyle: {
+        textAlign: 'center',
+      },
+      indicatorStyle: {
+        borderBottomColor: '#87B56A',
+        borderBottomWidth: 2,
+      },
     }
   }
 );
@@ -93,7 +211,9 @@ const rootNavigator = createSwitchNavigator({
       headerStyle
     }
   },
-  App: { screen: TabNav }
+  App: {
+    screen: TabNav
+  }
 },
   {
     initialRouteName: 'Launch',

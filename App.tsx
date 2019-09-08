@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { isSignedIn } from './src/navigation/auth';
 import AppContainer from './src/navigation/navigation';
 import { View, StatusBar, StyleSheet } from 'react-native';
+import { Ionicons } from "@expo/vector-icons";
 
 export default class App extends Component {
 
@@ -18,11 +19,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <StatusBar
-          backgroundColor="#1c313a"
-          barStyle="light-content"
-        />
+      <View style={styles.container} >
         <AppContainer />
       </View>
     )
@@ -32,5 +29,5 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  }
+  },
 });
