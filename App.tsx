@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { isSignedIn } from './src/navigation/auth';
 import AppContainer from './src/navigation/navigation';
-import { View, StatusBar, StyleSheet } from 'react-native';
-import { Ionicons } from "@expo/vector-icons";
+import { View, StyleSheet } from 'react-native';
 
 export default class App extends Component {
 
